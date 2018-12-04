@@ -8,7 +8,7 @@ let CountSchema = new Schema({
         required:[true,"Required"]
     },
     TimeStamp: {
-        type: String,
+        type: Number,
     }
 });
 
