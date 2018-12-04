@@ -17,10 +17,11 @@ app.use('/order',require('./routes/order'));
 app.use('/emp',require('./routes/emp'));
 app.use('/customer',require('./routes/customer'));
 app.use('/item',require('./routes/item'));
+app.use('/count',require('./routes/count'));
 
 
-app.listen(4000,function(){
-    console.log("Listning on Port 4000");
+app.listen(4500,function(){
+    console.log("Listning on Port 4500");
 });
 
    
