@@ -3,11 +3,11 @@ const router =express.Router();
 const Order=require('../modules/order');
 
 router.route('/get').get((req, res) => {
-    Order.find((err, ninja) => {
+    Order.find((err, order) => {
         if (err)
             console.log(err);
         else
-            res.json(ninja);
+            res.json(order);
     });
 });
 
