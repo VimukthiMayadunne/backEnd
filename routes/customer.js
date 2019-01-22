@@ -48,10 +48,10 @@ router.route('update/:id').post((req, res) => {
         if (!customer)
             return next(new Error('Could not load document'));
         else {
-            customer.itemname = req.body.itemname;
-            customer.dueDate = req.body.dueDate;
-            customer.qntity = req.body.qntity;
-            customer.stat = req.body.stat;
+            customer.cFirstName = req.body.cFirstName;
+            customer.cLastName = req.body.cLastName;
+            customer.cEmail = req.body.cEmail;
+            customer.cContactNo = req.body.cContactNo;
             customer.save().then(order => {
                 res.json('Update done');
             }).catch(err => {

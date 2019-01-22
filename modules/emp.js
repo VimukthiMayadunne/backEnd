@@ -6,18 +6,21 @@ const EmpSchema =new Schema({
         type:String,
         required:[true,"E ID is Required"]
     },
-    cFirstName:{
+    eFirstName:{
         type:String,
         required:[true,"Enter A Name"]
     },
-    cLastName:{
+    eLastName:{
+        type:String
+    },
+    eType:{
         type:String
     },
     password:{
-        type:String,
-        required:[true,"Please add A password"]
+        type:String
+        //required:[true,"Please add A password"]
     },
-    cEmail:{
+    eEmail:{
         type:String
     },
     contactNo:{

@@ -11,11 +11,6 @@ let ItemSchema = new Schema({
     sMHours: {
         type: Number
     },
-    Now:{
-        type: String,
-        default: Date.now()
-    }
-
 });
 
 const Item =mongoose.model('item',ItemSchema);

@@ -4,10 +4,7 @@ const Schema =mongoose.Schema;
 const CustomerSchema =new Schema({
     cFirstName:{
         type:String,
-        required:[true,"Namak Dapan pakayo"]
-    },
-    cLastName:{
-        type:String
+        required:[true,"Please Enter A name"]
     },
     cLastName:{
         type:String
@@ -18,9 +15,6 @@ const CustomerSchema =new Schema({
     cContactNo:{
         type:String
     },
-    cAddress:{
-        type:String,
-    }
 });
 
 const Customer =mongoose.model('customer',CustomerSchema);
