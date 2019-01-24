@@ -2,6 +2,9 @@ const mongoose =require('mongoose');
 const Schema =mongoose.Schema;
 
 const CustomerSchema =new Schema({
+    cId:{
+        type:String
+    },
     cFirstName:{
         type:String,
         required:[true,"Please Enter A name"]
@@ -12,7 +15,7 @@ const CustomerSchema =new Schema({
     cEmail:{
         type:String
     },
-    cContactNo:{
+    contactno:{
         type:String
     },
 });

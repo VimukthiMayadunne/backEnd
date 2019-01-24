@@ -43,11 +43,12 @@ router.route('/delete/:id').get((req, res) => {
 })
 
 
-router.route('update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {
     Item.findById(req.params.id, (err, item) => {
         if (!item)
             return next(new Error('Could not load document'));
         else {
+            item.iId=req.body.iId;
             item.iName = req.body.iName;
             item.sLHours = req.body.sLHours;
             item.sMHours = req.body.sMHours;

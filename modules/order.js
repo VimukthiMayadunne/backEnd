@@ -3,14 +3,25 @@ const Schema =mongoose.Schema;
 
 
 let OrderSchema = new Schema({
-    itemname: {
+    oId: {
+        type: String
+    },
+    iId: {
+        type: String
+    },
+    cId: {
         type: String
     },
     dueDate: {
-        type: String
+        type: Date
     },
     qntity: {
         type: Number
+    },
+    complete: {
+        type: Number,
+        default:0
+
     },
     stat: {
         type: String,

@@ -43,7 +43,7 @@ router.route('/delete/:id').get((req, res) => {
 })
 
 
-router.route('update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {
     Emp.findById(req.params.id, (err, emp) => {
         if (!emp)
             return next(new Error('Could not load document'));

@@ -18,7 +18,8 @@ app.use('/order',require('./routes/order'));
 app.use('/emp',require('./routes/emp'));
 app.use('/customer',require('./routes/customer'));
 app.use('/item',require('./routes/item'));
-app.use('/count',require('./routes/count'));
+app.use('/itemc',require('./routes/itemc'));
+app.use('/manual',require('./routes/manual'));
 
 
 app.listen(4000,function(){

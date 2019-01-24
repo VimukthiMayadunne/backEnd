@@ -34,7 +34,7 @@ router.post('/add',function(req,res){
 
 
 router.route('/delete/:id').get((req, res) => {
-    Order.findByIdAndRemove({_id: req.params.id}, (err, order) => {
+    Order.findByIdAndRemove(req.params.id, (err, order) => {
         if (err)
             res.json(err);
         else
@@ -43,12 +43,14 @@ router.route('/delete/:id').get((req, res) => {
 })
 
 
-router.route('update/:id').post((req, res) => {
-    Order.findById(req.params.id, (err, order) => {
+router.route('/update/:id').post((req, res) => {
+    Order.findById({_id:req.params.id}, (err, order) => {
         if (!order)
             return next(new Error('Could not load document'));
         else {
-            order.itemname = req.body.itemname;
+            order.oId = req.body.oId;
+            order.iId = req.body.iId;
+            order.cId = req.body.cId;
             order.dueDate = req.body.dueDate;
             order.qntity = req.body.qntity;
             order.stat = req.body.stat;

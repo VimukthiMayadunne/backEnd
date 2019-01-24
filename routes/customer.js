@@ -43,15 +43,16 @@ router.route('/delete/:id').get((req, res) => {
 })
 
 
-router.route('update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {
     Customer.findById(req.params.id, (err, customer) => {
         if (!customer)
             return next(new Error('Could not load document'));
         else {
+            customer.cId = req.body.cId;
             customer.cFirstName = req.body.cFirstName;
             customer.cLastName = req.body.cLastName;
             customer.cEmail = req.body.cEmail;
-            customer.cContactNo = req.body.cContactNo;
+            customer.contactno = req.body.contactno;
             customer.save().then(order => {
                 res.json('Update done');
             }).catch(err => {
