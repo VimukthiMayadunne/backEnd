@@ -1,16 +1,25 @@
+const http = require('http');
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require( 'cors');
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
+//const port = process.env.PORT || 3000; 
 const app = express();
+//const passport = require('passport');
+//var blacklist = require('express-jwt-blacklist');
+//const user = require('./web/routes');
+const config = require('./config/database');
 
-mongoose.connect("mongodb://localhost:27017/app", { useNewUrlParser: true });
-
-const connection = mongoose.connection;
-
-connection.once('open', () => {
-    console.log('MongoDB database connection established successfully!');
+const connectDB = mongoose.connect(config.database, { useNewUrlParser: true },(err)=>{
+    if(err){
+      console.log('-------------------------------');  
+      console.log("Warning! Database not connected");
+    }else{
+      console.log("Database connected"); 
+    }
 });
+
 app.use(cors());
 app.use(bodyParser.json());
 
