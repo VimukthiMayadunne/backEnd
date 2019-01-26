@@ -22,7 +22,24 @@ router.route('/getal').get((req, res) => {
             res.json(itemC);
     });
 });
-
+router.get('/stopPro').get((req,res)=>{
+    let stat =false;
+    Manual.findOne({}).sort('-timeStamp').limit(1).exec(function(err, manual) {
+        if (err)
+            console.log(err);
+        else{
+            manual.stat = stat;
+            manual.save()
+                .then(issue => {
+                    res.status(200).json({'Productio': 'Terminated Succefull'});
+                })
+                .catch(err => {
+                    res.status(400).send('Failed to stop the production');
+            });             
+        }
+        
+    });
+});
 
 router.post('/add',function(req,res){
             let acount = req.body.ict;
@@ -71,7 +88,7 @@ router.post('/add',function(req,res){
             });
         });
 
-router.route('/d/:id').get((req, res) => {
+router.route('/delete/:id').get((req, res) => {
     Itemc.findByIdAndRemove(req.params.id, (err, order) => {
         if (err)
             res.json(err);

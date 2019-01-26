@@ -7,7 +7,16 @@ router.route('/get').get((req, res) => {
         if (err)
             console.log(err);
         else
-            console.log(manual.aRate);
+            res.json(manual);
+        
+    });
+});
+
+router.route('/getstat').get((req, res) => {
+    Manual.findOne({}).sort('-timeStamp').limit(1).exec(function(err, manual) {
+        if (err)
+            console.log(err);
+        else
             res.json(manual.stat);
         
     });

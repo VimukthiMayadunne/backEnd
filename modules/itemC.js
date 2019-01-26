@@ -3,6 +3,9 @@ const Schema =mongoose.Schema;
 
 
 let ItemcSchema = new Schema({
+    did:{
+        type: String
+    },
     ict: {
         type: Number,
         default:50
