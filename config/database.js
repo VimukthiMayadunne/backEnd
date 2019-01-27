@@ -1,5 +1,6 @@
 module.exports = {
     "database" : "mongodb://vimu:vimu123@ds111765.mlab.com:11765/ncinga",
+    secret: 'yoursecret'
 };
 
 //mongodb://localhost:27017/tidyclean

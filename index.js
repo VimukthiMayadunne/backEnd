@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+require('./config/passport')(passport);
 
 
 app.use('/login',require('./routes/login'));
