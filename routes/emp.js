@@ -22,14 +22,14 @@ router.route('/get/:id').get((req, res) => {
 
 
 router.post('/add',function(req,res){
-        let  emp = new Emp(req.body);
-        emp.save()
-            .then(issue => {
-                res.status(200).json({'issue': 'Added successfully'});
-            })
-            .catch(err => {
-                res.status(400).send('Failed to create new record');
-            });
+        let  newUser = new Emp(req.body);
+        Emp.addUser(newUser, (err, user) => {
+            if(err) {
+              res.json({success: false, msg: 'Failed to register user'});
+            } else {
+              res.json({success: true, msg: 'User registered'});
+            }
+        });
 });
 
 

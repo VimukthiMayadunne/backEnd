@@ -43,23 +43,27 @@ router.get('/stopPro').get((req,res)=>{
 
 router.post('/add',function(req,res){
             let acount = req.body.ict;
+            let device = req.body.dId;
             var standrd ;    
-            let  itemc = new Itemc(req.body);
-            itemc.save()
-                .then(issue => {
-                    res.status(200).json({'issue': 'Added successfully'});
-                })
-                .catch(err => {
-                    res.status(400).send('Failed to create new record');
-                });                   
+            let  itemc = new Itemc(req.body);                   
             Manual.findOne({}).sort('-timeStamp').limit(1).exec(function(err, manual) {
                 let oId=manual.oId;
                 let iId=manual.iId;
                 let cId=manual.cid;
+                let dId=manual.dId;
                 if (err)
+                    return;
+                if (device != dId)
                     return;
                 else
                 {
+                itemc.save()
+                    .then(issue => {
+                        res.status(200).json({'issue': 'Added successfully'});
+                    })
+                    .catch(err => {
+                        res.status(400).send('Failed to create new record');
+                    });
                     Order.findOne({'oId':oId}).exec(function(err,order)
                     {
                         if(err)
@@ -67,6 +71,7 @@ router.post('/add',function(req,res){
                         if(order.qntity<order.complete+acount)
                         {
                             order.complete = newCount;
+                            order.stat= "Order_Completed";
                             order.save();
                             return;
                         }

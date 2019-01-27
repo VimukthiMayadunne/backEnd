@@ -18,7 +18,9 @@ let ManualSchema = new Schema({
     aRate:{
         type:Number,
         //required:[true,"Required"]
-
+    },
+    dId:{
+        type: String,
     },
     timeStamp: {
         type: Date,

@@ -4,9 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require( 'cors');
 const mongoose = require('mongoose');
-//const port = process.env.PORT || 3000; 
 const app = express();
-//const passport = require('passport');
+const passport = require('passport');
 //var blacklist = require('express-jwt-blacklist');
 //const user = require('./web/routes');
 const config = require('./config/database');
@@ -21,8 +20,17 @@ const connectDB = mongoose.connect(config.database, { useNewUrlParser: true },(e
 });
 
 app.use(cors());
+
+app.use(express.static(path.join(__dirname,'public')));
+
 app.use(bodyParser.json());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.use('/login',require('./routes/login'));
 app.use('/order',require('./routes/order'));
 app.use('/emp',require('./routes/emp'));
 app.use('/customer',require('./routes/customer'));

@@ -11,6 +11,15 @@ router.route('/get').get((req, res) => {
     });
 });
 
+router.route('/getdue').get((req, res) => {
+    Order.find({'stat':'Order_Due'}).sort('-dueDate').exec(function(err,order) {
+        if (err)
+            console.log(err);
+        else
+            res.json(order);
+    });
+});
+
 router.route('/get/:id').get((req, res) => {
     Order.findById(req.params.id, (err, order) => {
         if (err)

@@ -25,7 +25,7 @@ let OrderSchema = new Schema({
     },
     stat: {
         type: String,
-        default: 'Due'
+        default: 'Order_Due'
     }
 });
 
