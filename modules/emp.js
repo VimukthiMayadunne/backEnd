@@ -39,7 +39,7 @@ module.exports.getUserbyId =function(id ,callback){
 
 module.exports.getUserByUsername = function(empId, callback) {
     const query = {empId: empId}
-    Emp.findOne(query, callback);1
+    Emp.findOne(query, callback);
   }
   
   module.exports.addUser = function(newUser, callback) {

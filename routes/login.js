@@ -3,12 +3,13 @@ const router =express.Router();
 const Emp =require('../modules/emp');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const config = require('../config/database');
 
 router.post('/authenticate', (req, res, next) => {
-    const eId = req.body.eId;
+    const empId = req.body.empId;
     const password = req.body.password;
   
-    Emp.getUserByUsername(eId, (err, emp) => {
+    Emp.getUserByUsername(empId, (err, emp) => {
       if(err) throw err;
       if(!emp) { 
         return res.json({success: false, msg: 'User not found'});
@@ -24,8 +25,8 @@ router.post('/authenticate', (req, res, next) => {
             success: true,
             token: 'JWT '+token,
             emp: {
-              id: user._id,
-              eId: emp.eId,
+              id: emp._id,
+              empId: emp.empId,
               eType: emp.eType,
               email: emp.eEmail
             }
@@ -39,13 +40,8 @@ router.post('/authenticate', (req, res, next) => {
 
 
 
-router.get("/register",(req,res,next)=>{
-    res.send("Reg")
+router.get("/register",passport.authenticate('jwt', {session:false}),(req,res,next)=>{
+    res.send("Reg works");
 });
-router.get("/register",(req,res,next)=>{
-    res.send("Reg")
-});
-router.get("/register",(req,res,next)=>{
-    res.send("Reg")
-});
+
  module.exports =router;

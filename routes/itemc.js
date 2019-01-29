@@ -42,18 +42,19 @@ router.get('/stopPro').get((req,res)=>{
 });
 
 router.post('/add',function(req,res){
+            console.log("Awa");
             let acount = req.body.ict;
             let device = req.body.dId;
-            var standrd ;    
+            var standrd ;
+            var newCount;    
             let  itemc = new Itemc(req.body);                   
             Manual.findOne({}).sort('-timeStamp').limit(1).exec(function(err, manual) {
+                console.log(manual);
                 let oId=manual.oId;
                 let iId=manual.iId;
                 let cId=manual.cid;
-                let dId=manual.dId;
+                //let dId=manual.dId;
                 if (err)
-                    return;
-                if (device != dId)
                     return;
                 else
                 {
@@ -78,15 +79,23 @@ router.post('/add',function(req,res){
                         else
                         {
                             standrd=manual.aRate;
-                            let newCount=order.complete+acount;
+                            newCount=order.complete+acount;
                             var vari=standrd-acount;
+                            console.log("order Awa");
+                            console.log("Standard:",standrd);
+                            console.log("Count Recived:",acount);
                             if( acount< standrd)
                             {
                                 let  alert = new Alert({oid:oId ,iId:iId , cId:cId , variance:vari});
                                 alert.save();
+                                console.log("alert awa aawaw  assadsadsadsdsadsadsadadsadsafedfsa");
+
+
+
                             }
                             order.complete = newCount;
                             order.save();
+                            console.log("WADA WADADADSA");
                         }
                     });
                 }                       

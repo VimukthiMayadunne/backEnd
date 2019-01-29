@@ -15,12 +15,12 @@ let ManualSchema = new Schema({
         type: String,
         //required:[true,"Required"]
     },
+    dId:{
+        type: String,
+    },
     aRate:{
         type:Number,
         //required:[true,"Required"]
-    },
-    dId:{
-        type: String,
     },
     timeStamp: {
         type: Date,

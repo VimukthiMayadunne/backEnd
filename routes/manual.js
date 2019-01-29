@@ -17,7 +17,7 @@ router.route('/getstat').get((req, res) => {
         if (err)
             console.log(err);
         else
-            res.json(manual.stat);
+            res.json(false);
         
     });
 });
@@ -26,6 +26,7 @@ router.route('/getstat').get((req, res) => {
 
 router.post('/add',function(req,res){
     let  manual = new Manual(req.body);
+    console.log(manual);
     manual.save()
         .then(issue => {
             res.status(200).json({'issue': 'Added successfully'});
