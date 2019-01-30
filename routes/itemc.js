@@ -5,6 +5,7 @@ const Manual=require('../modules/manual');
 const Alert=require('../modules/alert');
 const Order=require('../modules/order')
 
+
 router.route('/get').get((req, res) => {
     Itemc.find((err, itemC) => {
         if (err)
@@ -36,8 +37,7 @@ router.get('/stopPro').get((req,res)=>{
                 .catch(err => {
                     res.status(400).send('Failed to stop the production');
             });             
-        }
-        
+        }    
     });
 });
 
@@ -53,8 +53,10 @@ router.post('/add',function(req,res){
                 let oId=manual.oId;
                 let iId=manual.iId;
                 let cId=manual.cid;
-                //let dId=manual.dId;
+                let dId=manual.dId;
                 if (err)
+                    return;
+                if (dId != device)
                     return;
                 else
                 {

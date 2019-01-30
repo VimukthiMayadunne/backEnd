@@ -23,7 +23,6 @@ router.route('/getstat').get((req, res) => {
 });
 
 
-
 router.post('/add',function(req,res){
     let  manual = new Manual(req.body);
     console.log(manual);

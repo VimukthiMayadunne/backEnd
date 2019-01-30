@@ -38,6 +38,8 @@ app.use('/customer',require('./routes/customer'));
 app.use('/item',require('./routes/item'));
 app.use('/itemc',require('./routes/itemc'));
 app.use('/manual',require('./routes/manual'));
+app.use('/feedback',require('./routes/feedback'));
+app.use('/auto',require('./routes/auto '));
 
 
 app.listen(4000,function(){
