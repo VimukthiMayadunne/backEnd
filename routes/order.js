@@ -50,7 +50,7 @@ router.post('/add',function(req,res){
                 res.status(400).send('Failed to create new record');
             });
 });
-
+ 
 
 router.route('/delete/:id').get((req, res) => {
     Order.findByIdAndRemove(req.params.id, (err, order) => {

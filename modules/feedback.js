@@ -3,23 +3,23 @@ const Schema =mongoose.Schema;
 
 
 let FeedBackSchema = new Schema({
-    empId:{
-        type: String,
+    date:{
+        type: Date,
     },
     iId: {
-        type: String,
-        //required:[true,"Required"]
-    },
-    type: {
         type: String,
         //required:[true,"Required"]
     },
     stat: {
         type: String,
     },
-    time: {
-        type: Date,
-        default:Date.now, 
+    type: {
+        type: String,
+        //required:[true,"Required"]
+    },
+    des: {
+        type: String,
+        //required:[true,"Required"]
     }
 });
 

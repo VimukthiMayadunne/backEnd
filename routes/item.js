@@ -1,6 +1,8 @@
 const express = require('express');
 const router =  express.Router();
 const Item =    require('../modules/item');
+const FeedBack = require('../modules/feedback')
+const Dates =require('../modules/dates');
 
 router.route('/get').get((req, res) => {
     Item.find((err, item) => {
@@ -11,8 +13,36 @@ router.route('/get').get((req, res) => {
     });
 });
 
+router.route('/getf').get((req, res) => {
+    FeedBack.find((err, item) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(item);
+    });
+});
+router.route('/getfb').post((req, res) => {
+    console.log("DAsdasd");
+    let details=new Dates(req.body)
+    console.log(details);
+    FeedBack.findOne({
+        time: {
+            $gte: details.oDate,
+            $lt:  details.nDate
+        }}).exec(function(err,order)
+    {
+        console.log("order Details",order);
+        if (err)
+            console.log(err);
+        else{
+            console.log(order);
+            res.json(order);}
+    });
+});
+
 router.route('/get/:id').get((req, res) => {
     Item.findById(req.params.id, (err, item) => {
+
         if (err)
             console.log(err);
         else

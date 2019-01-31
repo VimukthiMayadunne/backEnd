@@ -25,9 +25,8 @@ function getRate(oderqty,workingdays,workinghours){
 }
 
 
-
 router.route('/get').get((req, res) => {
-    Std.find((err, itemC) => {
+    Std.findOne((err, itemC) => {
         if (err)
             console.log(err);
         else
@@ -46,14 +45,16 @@ router.route('/getone').get((req, res) => {
 });
 
 router.post('/add',function(req,res){
+    console.log("Request Body",req.body);
     let auto = new Auto(req.body);
+    console.log("Standard:",auto);
     res.status(200).json({'FeedBack': 'Added successfully'});
     let wd   = workingdays(auto.fDate,auto.sDate,auto.noDate);
     var idt,count,bneck,sRate,rRate;
     var value=0;
     Item.findOne({'iId':'S001XLR'}).exec(function(err,order)
     {
-        idt = new Item(order);
+    idt = new Item(order);
     Order.find({
             dueDate: {
                 $gte: auto.sDate,

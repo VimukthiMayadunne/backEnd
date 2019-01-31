@@ -2,8 +2,19 @@ const express = require('express');
 const router =express.Router();
 const Emp = require('../modules/emp');
 
+
 router.route('/get').get((req, res) => {
     Emp.find((err, emp) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(emp);
+    });
+});
+
+router.route('/getbyid').post((req, res) => {
+    let empId=req.body.empId;
+    Emp.findOne({empId:empId}).exec(function(err, emp) {
         if (err)
             console.log(err);
         else

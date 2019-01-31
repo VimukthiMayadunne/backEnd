@@ -2,7 +2,6 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require( 'cors');
 const mongoose = require('mongoose');
 const app = express();
 const passport = require('passport');
@@ -19,7 +18,13 @@ const connectDB = mongoose.connect(config.database, { useNewUrlParser: true },(e
     }
 });
 
-app.use(cors());
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
+  next();
+});
+
 
 app.use(express.static(path.join(__dirname,'public')));
 
@@ -42,8 +47,10 @@ app.use('/feedback',require('./routes/feedback'));
 app.use('/auto',require('./routes/auto '));
 
 
-app.listen(4000,function(){
+var server = require('http').Server(app); 
+
+
+server.listen(4000,function(){
     console.log("Listning on Port 4000");
 });
 
-   

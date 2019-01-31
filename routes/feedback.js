@@ -2,6 +2,7 @@ const express = require('express');
 const router =express.Router();
 const FeedBack = require('../modules/feedback');
 
+//use Find One
 router.route('/get').get((req, res) => {
     FeedBack.find((err, feed) => {
         if (err)
