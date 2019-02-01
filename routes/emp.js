@@ -73,4 +73,26 @@ router.route('/update/:id').post((req, res) => {
         }
     });
 });
+
+
+router.route('/update').post((req, res) => {
+    Emp.findOne({'empId':req.body.empId}).exec(function (err, emp) {
+        if (!emp)
+            return next(new Error('Could not load document'));
+        else {
+            emp.empId = req.body.empId;
+            emp.eFirstName = req.body.eFirstName;
+            emp.eLastName = req.body.eLastName;
+            emp.eType = req.body.eType;
+            emp.eEmail =req.body.eEmail;
+            emp.password =req.body.password;
+            emp.contactNo=req.body.contactNo;
+            emp.save().then(order => {
+                res.json('Update done');
+            }).catch(err => {
+                res.status(400).send('Update failed');
+            });
+        }
+    })
+});
 module.exports =router;

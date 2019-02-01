@@ -5,6 +5,7 @@ const Schema =mongoose.Schema;
 let FeedBackSchema = new Schema({
     date:{
         type: Date,
+        default:Date.now()
     },
     iId: {
         type: String,

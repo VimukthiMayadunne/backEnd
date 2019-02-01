@@ -13,7 +13,7 @@ router.route('/get').get((req, res) => {
 });
 
 router.post('/add',function(req,res){
-    let  feedback = new FeedBack(req.body);
+    let  feedback = new any(req.body);
     feedback.save()
         .then(issue => {
             res.status(200).json({'FeedBack': 'Added successfully'});

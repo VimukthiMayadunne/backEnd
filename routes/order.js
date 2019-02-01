@@ -21,7 +21,7 @@ router.route('/getdue').get((req, res) => {
 });
 
 router.route('/getcomp').get((req, res) => {
-    Order.find({'stat':'Order Completed'}).sort('-dueDate').exec(function(err,order) {
+    Order.find({'stat':'Order_Completed'}).sort('-dueDate').exec(function(err,order) {
         if (err)
             console.log(err);
         else

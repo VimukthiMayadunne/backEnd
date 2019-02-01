@@ -33,21 +33,21 @@ router.route('/formdetails').post((req,res)=>{
 
 
 router.route('/get').get((req, res) => {
-    Itemc.find((err, itemC).limit(10).exec(function(err,itemc) {
+    Itemc.find({}).limit(10).exec(function(err,item) {
         if (err)
             console.log(err);
         else
-            res.json(itemC);
-    }));
+            res.json(item);
+    });
 });
 
 router.route('/getal').get((req, res) => {
-    Alert.find((err, itemC).limit(10).exec(function(err,itemc){
+    Alert.find({}).limit(10).exec(function(err,itemc){
         if (err)
             console.log(err);
         else
-            res.json(itemC);
-    }));
+            res.json(itemc);
+    });
 });
 router.get('/stopPro').get((req,res)=>{
     let stat =false;
@@ -83,7 +83,7 @@ router.post('/add',function(req,res){
                 let dId=manual.dId;
                 if (err)
                     return;
-                if (device==manual.dId)
+                if (0)
                     return;
                 else
                 {

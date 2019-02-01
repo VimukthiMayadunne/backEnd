@@ -20,7 +20,9 @@ function maxPerMH(smhours,workingdays,workinghours,mcph) {
     return Math.floor(aRate);
 }
 function getRate(oderqty,workingdays,workinghours){
+    console.log('function Cllaed')
     var rate=oderqty/workingdays/workinghours;
+    console.log(rate);
     return Math.floor(rate); 
 }
 
@@ -52,9 +54,10 @@ router.post('/add',function(req,res){
     let wd   = workingdays(auto.fDate,auto.sDate,auto.noDate);
     var idt,count,bneck,sRate,rRate;
     var value=0;
-    Item.findOne({'iId':'S001XLR'}).exec(function(err,order)
+    Item.findOne({'iId':'P001'}).exec(function(err,order)
     {
     idt = new Item(order);
+    console.log("ITEM DATA:",idt);
     Order.find({
             dueDate: {
                 $gte: auto.sDate,
@@ -63,10 +66,16 @@ router.post('/add',function(req,res){
                 od.forEach(element => {
                     count=element.qntity
                     value=value+count;
+                    console.log("1111111111111111111");
+                    console.log("count",count);
                 });
+    console.log("count Out side",count);
+    console.log("wd",wd);
     let maxL=maxPerLH(idt.sLHours,wd,auto.wh,auto.avgEmp);
     let maxM=maxPerMH(idt.sMHours,wd,auto.wh,auto.avgEmp);
     let rRate=getRate(count,wd,auto.wh);
+    console.log("maxl:",maxL);
+    console.log("maxm:",maxM);
     if(maxL < maxM &&  maxL < rRate){
         bneck="Labhour Hours";
         sRate=maxL;
@@ -78,10 +87,11 @@ router.post('/add',function(req,res){
     else{
         bneck="Prodcution Units"
         if( maxM < maxL)
-            sRate=maxM
+            sRate=maxM;
         else
-            sRate=maxM
+            sRate=maxM;
     }
+    console.log("sRate",sRate);
    let newstd = new Std({iId:auto.iId ,rRate:rRate,sRate:sRate,bNeck:bneck,sDate:auto.sDate,fDate:auto.fDate});
    console.log("Final:",newstd);
    newstd.save();
